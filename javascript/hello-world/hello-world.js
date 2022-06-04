@@ -4,14 +4,15 @@
 // Make sure to look at hello-world.spec.js--that should give you some hints about what is
 // expected here.
 
-var HelloWorld = function() {};
+export const hello = () => "Hello, World!";
 
-HelloWorld.prototype.hello = function(input) {
-  if (!input) {
-    return 'Hello, World!';
-  } else {
-    return 'Hello, ' + input + '!';
-  }
-};
+// var helloWorld = {
+//   hello() {
+//     return "Hello, World!";
+//   },
+// };
+// module.exports = helloWorld;
 
-module.exports = HelloWorld;
+// export function hello() {
+//   return "Hello, World!";
+// }
