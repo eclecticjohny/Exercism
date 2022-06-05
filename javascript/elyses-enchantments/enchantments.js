@@ -9,7 +9,7 @@
  * @returns {number} the card
  */
 export function getItem(cards, position) {
-  throw new Error('Implement the getItem function');
+  return cards[position];
 }
 
 /**
@@ -22,7 +22,11 @@ export function getItem(cards, position) {
  * @returns {number[]} the cards with the change applied
  */
 export function setItem(cards, position, replacementCard) {
-  throw new Error('Implement the setItem function');
+  return [
+    ...cards.slice(0, position),
+    replacementCard,
+    ...cards.slice(position + 1),
+  ];
 }
 
 /**
@@ -34,7 +38,7 @@ export function setItem(cards, position, replacementCard) {
  * @returns {number[]} the cards with the newCard applied
  */
 export function insertItemAtTop(cards, newCard) {
-  throw new Error('Implement the insertItemAtTop function');
+  return [...cards, newCard];
 }
 
 /**
@@ -46,7 +50,7 @@ export function insertItemAtTop(cards, newCard) {
  * @returns {number[]} the cards without the removed card
  */
 export function removeItem(cards, position) {
-  throw new Error('Implement the removeItem function');
+  return [...cards.slice(0, position), ...cards.slice(position + 1)];
 }
 
 /**
@@ -57,7 +61,7 @@ export function removeItem(cards, position) {
  * @returns {number[]} the cards without the removed card
  */
 export function removeItemFromTop(cards) {
-  throw new Error('Implement the removeItemFromTop function');
+  return [...cards.slice(0, cards.length - 1)];
 }
 
 /**
@@ -69,7 +73,7 @@ export function removeItemFromTop(cards) {
  * @returns {number[]} the cards including the new card
  */
 export function insertItemAtBottom(cards, newCard) {
-  throw new Error('Implement the insertItemAtBottom function');
+  return [newCard, ...cards];
 }
 
 /**
@@ -80,7 +84,7 @@ export function insertItemAtBottom(cards, newCard) {
  * @returns {number[]} the cards without the removed card
  */
 export function removeItemAtBottom(cards) {
-  throw new Error('Implement the removeItemAtBottom function');
+  return [...cards.slice(1)];
 }
 
 /**
@@ -92,5 +96,5 @@ export function removeItemAtBottom(cards) {
  * @returns {boolean} true if there are exactly stackSize number of cards, false otherwise
  */
 export function checkSizeOfStack(cards, stackSize) {
-  throw new Error('Implement the checkSizeOfStack function');
+  return cards.length === stackSize;
 }
