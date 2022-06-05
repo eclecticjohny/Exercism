@@ -4,6 +4,8 @@
 // the @ts-check directive. It will give you helpful autocompletion when
 // implementing this exercise.
 
+const LICENSED_VEHICLES = ["car", "truck"];
+
 /**
  * Determines whether or not you need a licence to operate a certain kind of vehicle.
  *
@@ -11,7 +13,7 @@
  * @returns {boolean} whether a license is required
  */
 export function needsLicense(kind) {
-  throw new Error('Please implement the needsLicense function');
+  return LICENSED_VEHICLES.includes(kind);
 }
 
 /**
@@ -23,7 +25,8 @@ export function needsLicense(kind) {
  * @returns {string} a sentence of advice which option to choose
  */
 export function chooseVehicle(option1, option2) {
-  throw new Error('Please implement the chooseVehicle function');
+  const choice = option1.localeCompare(option2) > 0 ? option2 : option1;
+  return `${choice} is clearly the better choice.`;
 }
 
 /**
@@ -35,5 +38,6 @@ export function chooseVehicle(option1, option2) {
  * @returns expected resell price in the dealership
  */
 export function calculateResellPrice(originalPrice, age) {
-  throw new Error('Please implement the calculateResellPrice function');
+  const ageFactor = age < 3 ? 0.8 : age < 11 ? 0.7 : 0.5;
+  return originalPrice * ageFactor;
 }
