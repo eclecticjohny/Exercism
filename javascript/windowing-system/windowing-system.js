@@ -65,7 +65,6 @@ export class ProgramWindow {
 }
 
 export function changeWindow(programWindow) {
-  programWindow.move(new Position());
   programWindow.resize(new Size(400, 300));
   programWindow.move(new Position(100, 150));
 
