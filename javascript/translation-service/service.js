@@ -1,4 +1,7 @@
 /// <reference path="./global.d.ts" />
+
+import { error } from "console";
+
 // @ts-check
 //
 // The lines above enable type checking for this file. Various IDEs interpret
@@ -27,7 +30,7 @@ export class TranslationService {
    * @returns {Promise<string>}
    */
   free(text) {
-    throw new Error('Implement the free function');
+    return this.api.fetch(text).then((translation) => translation.translation);
   }
 
   /**
@@ -41,7 +44,12 @@ export class TranslationService {
    * @returns {Promise<string[]>}
    */
   batch(texts) {
-    throw new Error('Implement the batch function');
+    if (texts.length === 0) {
+      return Promise.reject(new BatchIsEmpty());
+    }
+    return Promise.all(
+      texts.map((text) => this.api.fetch(text).then((res) => res.translation))
+    );
   }
 
   /**
@@ -54,7 +62,18 @@ export class TranslationService {
    * @returns {Promise<void>}
    */
   request(text) {
-    throw new Error('Implement the request function');
+    const request = () =>
+      new Promise((resolve, reject) => {
+        this.api.request(text, (result) => {
+          if (result) {
+            reject(result);
+          } else {
+            resolve();
+          }
+        });
+      });
+
+    return request().catch(request).catch(request);
   }
 
   /**
@@ -68,7 +87,17 @@ export class TranslationService {
    * @returns {Promise<string>}
    */
   premium(text, minimumQuality) {
-    throw new Error('Implement the premium function');
+    return this.api
+      .fetch(text)
+      .catch(() => {
+        return this.request(text).then(() => this.api.fetch(text));
+      })
+      .then((result) => {
+        if (result.quality < minimumQuality) {
+          throw new QualityThresholdNotMet();
+        }
+        return result.translation;
+      });
   }
 }
 
