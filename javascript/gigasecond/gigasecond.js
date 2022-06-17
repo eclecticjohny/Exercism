@@ -3,6 +3,8 @@
 // convenience to get you started writing code faster.
 //
 
-export const gigasecond = () => {
-  throw new Error('Remove this statement and implement this function');
+const GIG = Math.pow(10, 12);
+
+export const gigasecond = (inputDate) => {
+  return new Date(inputDate.getTime() + GIG);
 };
