@@ -3,6 +3,10 @@
 // convenience to get you started writing code faster.
 //
 
-export const isPangram = () => {
-  throw new Error('Remove this statement and implement this function');
-};
+const ALPHA_LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
+
+export const isPangram = (sentence) =>
+  sentence.length > 0 &&
+  ALPHA_LOWERCASE.split("").every((letter) =>
+    sentence.toLowerCase().includes(letter)
+  );
