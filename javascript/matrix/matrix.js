@@ -13,8 +13,6 @@ export class Matrix {
   }
 
   get columns() {
-    return this.rows[0].map((element, index) =>
-      this.rows.map((row) => row[index])
-    );
+    return this.rows[0].map((_, index) => this.rows.map((row) => row[index]));
   }
 }
