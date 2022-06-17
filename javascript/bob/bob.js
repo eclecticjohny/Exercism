@@ -3,20 +3,35 @@
 // convenience to get you started writing code faster.
 //
 
+const lowerAlpha = "abcdefghijklmnopqrstuvwxyz";
+
 export const hey = (message) => {
-  if (message.trim() === "") {
+  const trimmedMessage = message.trim();
+
+  if (trimmedMessage === "") {
     return "Fine. Be that way!";
   }
 
-  if (message.endsWith("?") && message.toUpperCase() === message) {
-    return "Whoa, chill out!";
+  if (
+    trimmedMessage.endsWith("?") &&
+    trimmedMessage.toUpperCase() === trimmedMessage &&
+    trimmedMessage
+      .split("")
+      .some((char) => lowerAlpha.includes(char.toLowerCase()))
+  ) {
+    return "Calm down, I know what I'm doing!";
   }
 
-  if (message.endsWith("?")) {
+  if (trimmedMessage.endsWith("?")) {
     return "Sure.";
   }
 
-  if (message.toUpperCase() === message) {
+  if (
+    trimmedMessage.toUpperCase() === trimmedMessage &&
+    trimmedMessage
+      .split("")
+      .some((char) => lowerAlpha.includes(char.toLowerCase()))
+  ) {
     return "Whoa, chill out!";
   }
 
