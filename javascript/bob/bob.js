@@ -4,5 +4,21 @@
 //
 
 export const hey = (message) => {
-  throw new Error('Remove this statement and implement this function');
+  if (message.trim() === "") {
+    return "Fine. Be that way!";
+  }
+
+  if (message.endsWith("?") && message.toUpperCase() === message) {
+    return "Whoa, chill out!";
+  }
+
+  if (message.endsWith("?")) {
+    return "Sure.";
+  }
+
+  if (message.toUpperCase() === message) {
+    return "Whoa, chill out!";
+  }
+
+  return "Whatever.";
 };
