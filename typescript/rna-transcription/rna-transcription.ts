@@ -1,5 +1,5 @@
-export function toRna(strand: string): string {
-  return strand
+export function toRna(dnaStrand: string): string {
+  return dnaStrand
     .split("")
     .map((dnaChar) => toRnaChar(dnaChar))
     .join("");
