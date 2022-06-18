@@ -40,7 +40,9 @@ function factorialize(num: number): number[] {
   return fac;
 }
 
-export function classify(givenNumber: number): string {
+type AliquotSum = "perfect" | "abundant" | "deficient";
+
+export function classify(givenNumber: number): AliquotSum {
   if (givenNumber <= 0) {
     throw new Error("Classification is only possible for natural numbers.");
   }
