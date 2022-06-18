@@ -40,7 +40,11 @@ function factorialize(num: number): number[] {
   return fac;
 }
 
-type AliquotSum = "perfect" | "abundant" | "deficient";
+enum AliquotSum {
+  Perfect = "perfect",
+  Abundant = "abundant",
+  Deficient = "deficient",
+}
 
 export function classify(givenNumber: number): AliquotSum {
   if (givenNumber <= 0) {
@@ -52,8 +56,8 @@ export function classify(givenNumber: number): AliquotSum {
     .reduce((acc, curr) => acc + curr, 0);
 
   return aliquotSum === givenNumber
-    ? "perfect"
+    ? AliquotSum.Perfect
     : aliquotSum > givenNumber
-    ? "abundant"
-    : "deficient";
+    ? AliquotSum.Abundant
+    : AliquotSum.Deficient;
 }
