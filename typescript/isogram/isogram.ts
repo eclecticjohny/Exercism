@@ -1,3 +1,5 @@
-export function isIsogram(/* parameters go here */): unknown {
-  throw new Error('Remove this statement and implement this function')
+export function isIsogram(sentence: string): boolean {
+  const lettersOnly = sentence.toLowerCase().replace(/[^a-z]/g, "");
+  const lettersOnlySet = new Set(lettersOnly);
+  return lettersOnlySet.size === lettersOnly.length;
 }
