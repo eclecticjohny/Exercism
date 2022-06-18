@@ -1,3 +1,7 @@
-export function isPangram() {
-  throw new Error('Remove this statement and implement this function')
+const LOWER_ALPHA = "abcdefghijklmnopqrstuvwxyz";
+
+export function isPangram(sentence: string): boolean {
+  return LOWER_ALPHA.split("").every((letter) =>
+    sentence.toLowerCase().includes(letter)
+  );
 }
