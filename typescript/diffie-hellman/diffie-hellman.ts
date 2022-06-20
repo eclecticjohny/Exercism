@@ -1,11 +1,21 @@
 export class DiffieHellman {
   constructor(private p: number, private g: number) {
-    if (p < 2 || !this.isPrime(p)) {
+    this.constructorCheck();
+  }
+
+  private constructorCheck(): void {
+    if (this.p < 2 || !this.isPrime(this.p)) {
       throw new Error("p is not prime");
     }
-    if (g < 2 || g >= p) {
+    if (this.g < 2 || this.g >= this.p) {
       throw new Error("g is out of range");
     }
+  }
+
+  private isPrime(num: number): boolean {
+    for (let i = 2, s = Math.sqrt(num); i <= s; i++)
+      if (num % i === 0) return false;
+    return num > 1;
   }
 
   public getPublicKey(privateKey: number): number {
@@ -30,11 +40,5 @@ export class DiffieHellman {
 
   public getSecret(theirPublicKey: number, myPrivateKey: number): number {
     return Math.pow(theirPublicKey, myPrivateKey) % this.p;
-  }
-
-  private isPrime(num: number): boolean {
-    for (let i = 2, s = Math.sqrt(num); i <= s; i++)
-      if (num % i === 0) return false;
-    return num > 1;
   }
 }
