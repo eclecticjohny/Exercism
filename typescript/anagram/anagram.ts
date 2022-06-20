@@ -1,9 +1,16 @@
 export class Anagram {
-  constructor(input: unknown) {
-    throw new Error('Remove this statement and implement this function')
+  constructor(private input: string) {}
+
+  public matches(...potentials: string[]): string[] {
+    return potentials.filter(
+      (potential) =>
+        potential.toLowerCase() !== this.input.toLowerCase() &&
+        this.lowerSplitSortJoin(potential) ===
+          this.lowerSplitSortJoin(this.input)
+    );
   }
 
-  public matches(...potentials: unknown[]): unknown {
-    throw new Error('Remove this statement and implement this function')
+  private lowerSplitSortJoin(input: string): string {
+    return input.toLowerCase().split("").sort().join("");
   }
 }
