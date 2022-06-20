@@ -1,5 +1,13 @@
 export class Gigasecond {
-  public date(/* Parameters go here */) {
-    throw new Error('Remove this statement and implement this function')
+  static gig: number = Math.pow(10, 12);
+
+  private _inputDate: Date;
+
+  constructor(inputDate: Date) {
+    this._inputDate = inputDate;
+  }
+
+  public date(): Date {
+    return new Date(this._inputDate.getTime() + Gigasecond.gig);
   }
 }
