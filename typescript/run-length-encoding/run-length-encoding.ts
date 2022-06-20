@@ -1,7 +1,9 @@
-export function encode() {
-  throw new Error('Remove this statement and implement this function')
+export function encode(input: string): string {
+  return input.replace(/(.)\1+/g, (match, char) => `${match.length}${char}`);
 }
 
-export function decode() {
-  throw new Error('Remove this statement and implement this function')
+export function decode(input: string): string {
+  return input.replace(/(\d+)(.)/g, (_, count, char) =>
+    Array(Number(count)).fill(char).join("")
+  );
 }
