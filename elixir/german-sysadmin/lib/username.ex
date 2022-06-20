@@ -1,19 +1,17 @@
 defmodule Username do
   @spec sanitize(charlist()) :: charlist()
-  def sanitize(''), do: ''
-
-  def sanitize([head | tail]) do
-    sanitized =
-      case head do
-        ?ß -> 'ss'
-        ?ä -> 'ae'
-        ?ö -> 'oe'
-        ?ü -> 'ue'
-        x when x >= ?a and x <= ?z -> [x]
-        ?_ -> '_'
-        _ -> ''
-      end
-
-    sanitized ++ sanitize(tail)
+  def sanitize(username) do
+    Enum.reduce(username, '', fn char, acc ->
+      acc ++
+        case char do
+          ?_ -> '_'
+          ?ä -> 'ae'
+          ?ö -> 'oe'
+          ?ß -> 'ss'
+          ?ü -> 'ue'
+          char when char in ?a..?z -> [char]
+          _ -> ''
+        end
+    end)
   end
 end
