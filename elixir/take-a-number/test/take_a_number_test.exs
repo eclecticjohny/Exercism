@@ -93,6 +93,15 @@ defmodule TakeANumberTest do
     send(pid, {:report_state, self()})
     assert_receive 1
 
+    send(pid, "Stop ignoring me")
+    send(pid, "I want to speak with the manager")
+
+    send(pid, {:take_a_number, self()})
+    assert_receive 2
+
+    send(pid, {:report_state, self()})
+    assert_receive 2
+
     # This is necessary because `Process.info/1` is not guaranteed to return up-to-date info immediately.
     dirty_hacky_delay_to_ensure_up_to_date_process_info = 200
     :timer.sleep(dirty_hacky_delay_to_ensure_up_to_date_process_info)
