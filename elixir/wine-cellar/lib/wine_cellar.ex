@@ -13,6 +13,15 @@ defmodule WineCellar do
     |> filter_by_country(opts[:country])
   end
 
+  # do not need to add the extra filter_by_year and filter_by_country
+  # clauses with this version of the function
+  #
+  # def filter(cellar, color, opts \\ []) do
+  #   Keyword.get_values(cellar, color)
+  #   |> then(&if year = opts[:year], do: filter_by_year(&1, year), else: &1)
+  #   |> then(&if country = opts[:country], do: filter_by_country(&1, country), else: &1)
+  # end
+
   # The functions below do not need to be modified.
 
   defp filter_by_year(wines, year)
