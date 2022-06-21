@@ -39,7 +39,13 @@ defmodule TakeANumberTest do
     send(pid, {:take_a_number, self()})
     assert_receive 1
 
+    send(pid, {:report_state, self()})
+    assert_receive 1
+
     send(pid, {:take_a_number, self()})
+    assert_receive 2
+
+    send(pid, {:report_state, self()})
     assert_receive 2
 
     send(pid, {:take_a_number, self()})
@@ -49,6 +55,9 @@ defmodule TakeANumberTest do
     assert_receive 3
 
     send(pid, {:take_a_number, self()})
+    assert_receive 4
+
+    send(pid, {:report_state, self()})
     assert_receive 4
 
     send(pid, {:take_a_number, self()})
