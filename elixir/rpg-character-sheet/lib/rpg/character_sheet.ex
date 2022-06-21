@@ -1,21 +1,40 @@
 defmodule RPG.CharacterSheet do
+  @spec welcome :: :ok
   def welcome() do
-    # Please implement the welcome/0 function
+    IO.puts("Welcome! Let's fill out your character sheet together.")
   end
 
+  @spec ask_name :: binary
   def ask_name() do
-    # Please implement the ask_name/0 function
+    IO.gets("What is your character's name?\n") |> String.trim()
   end
 
+  @spec ask_class :: binary
   def ask_class() do
-    # Please implement the ask_class/0 function
+    IO.gets("What is your character's class?\n") |> String.trim()
   end
 
+  @spec ask_level :: integer
   def ask_level() do
-    # Please implement the ask_level/0 function
+    IO.gets("What is your character's level?\n")
+    |> String.trim()
+    |> Integer.parse()
+    |> Kernel.elem(0)
   end
 
   def run() do
-    # Please implement the run/0 function
+    welcome()
+    name = ask_name()
+    class_ = ask_class()
+    level = ask_level()
+
+    character = %{
+      class: class_,
+      level: level,
+      name: name
+    }
+
+    IO.puts("\nYour character: " <> inspect(character))
+    character
   end
 end
