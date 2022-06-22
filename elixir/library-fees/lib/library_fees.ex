@@ -32,8 +32,8 @@ defmodule LibraryFees do
 
   @spec calculate_late_fee(String.t(), String.t(), number()) :: number()
   def calculate_late_fee(checkout, return, rate) do
-    taken = NaiveDateTime.from_iso8601!(checkout)
-    given_back = NaiveDateTime.from_iso8601!(return)
+    taken = datetime_from_string(checkout)
+    given_back = datetime_from_string(return)
     due_date = return_date(taken)
     fee = days_late(due_date, given_back) * rate
     if monday?(given_back), do: floor(fee * 0.5), else: fee
