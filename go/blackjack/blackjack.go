@@ -21,43 +21,34 @@ func ParseCard(card string) int {
 		return 8
 	case "nine":
 		return 9
-	case "ten":
-		return 10
-	case "jack":
-		return 10
-	case "queen":
-		return 10
-	case "king":
+	case "ten", "jack", "queen", "king":
 		return 10
 	default:
 		return 0
 	}
 }
 
-func addPlayerCards(card1, card2 string) int {
-	return ParseCard(card1) + ParseCard(card2)
-}
-
 // FirstTurn returns the decision for the first turn, given two cards of the
 // player and one card of the dealer.
 func FirstTurn(card1, card2, dealerCard string) string {
 	var moveToMake string
-	playerScore := addPlayerCards(card1, card2)
+	dealerSum := ParseCard(dealerCard)
+	playerSum := ParseCard(card1) + ParseCard(card2)
 
 	switch {
-	case playerScore == 22:
+	case playerSum == 22:
 		moveToMake = "P"
-	case playerScore == 21 && ParseCard(dealerCard) >= 10:
+	case playerSum == 21 && dealerSum >= 10:
 		moveToMake = "S"
-	case playerScore == 21 && ParseCard(dealerCard) < 10:
+	case playerSum == 21 && dealerSum < 10:
 		moveToMake = "W"
-	case playerScore > 16 && playerScore < 21:
+	case playerSum > 16 && playerSum < 21:
 		moveToMake = "S"
-	case playerScore > 11 && playerScore < 17 && ParseCard(dealerCard) >= 7:
+	case playerSum > 11 && playerSum < 17 && dealerSum >= 7:
 		moveToMake = "H"
-	case playerScore > 11 && playerScore < 17 && ParseCard(dealerCard) < 7:
+	case playerSum > 11 && playerSum < 17 && dealerSum < 7:
 		moveToMake = "S"
-	case playerScore <= 11:
+	case playerSum <= 11:
 		moveToMake = "H"
 	}
 
