@@ -4,11 +4,10 @@ import "fmt"
 
 // TODO: define the 'Drive()' method
 func (car *Car) Drive() {
-	if car.battery-car.batteryDrain < 0 {
-		return
+	if car.battery >= car.batteryDrain {
+		car.distance += car.speed
+		car.battery -= car.batteryDrain
 	}
-	car.distance += car.speed
-	car.battery -= car.batteryDrain
 }
 
 // TODO: define the 'DisplayDistance() string' method
