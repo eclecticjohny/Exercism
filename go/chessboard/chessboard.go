@@ -9,6 +9,10 @@ type Chessboard map[string]Rank
 // CountInRank returns how many squares are occupied in the chessboard,
 // within the given rank
 func CountInRank(cb Chessboard, rank string) int {
+	_, rankExists := cb[rank]
+	if !rankExists {
+		return 0
+	}
 	var count int
 	for _, square := range cb[rank] {
 		if square {
